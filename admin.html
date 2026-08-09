@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Espace administrateur — N2SA</title>
+<meta name="description" content="Maquette de l'espace administrateur de la plateforme N2SA.">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div class="page-loader"><img src="assets/logo.png" alt="Chargement"></div>
+
+<!-- ================= ESPACE ADMINISTRATEUR =================
+     Maquette d'interface uniquement : aucune donnée réelle, aucun accès
+     protégé n'est implémenté ici. La gestion des rôles, la protection de
+     cette page et la connexion aux données seront ajoutées avec le backend. -->
+
+<div class="admin-mobile-bar">
+  <img src="assets/logo.png" alt="Logo N2SA">
+  <strong style="font-family:var(--font-display);">Administration N2SA</strong>
+</div>
+
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="admin-brand">
+      <img src="assets/logo.png" alt="Logo N2SA">
+      <div><strong>N2SA</strong><span>Administration</span></div>
+    </div>
+    <nav class="admin-nav">
+      <a href="#" class="active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+        Tableau de bord
+      </a>
+      <a href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4h9l4 4v12H6z"/><path d="M15 4v4h4"/></svg>
+        Gestion des documents
+      </a>
+      <a href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5"/><circle cx="17.5" cy="8.5" r="2.4"/><path d="M15.8 13.7c2.7.4 4.7 2.8 4.7 5.8"/></svg>
+        Gestion des utilisateurs
+      </a>
+      <a href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19h4v-8H4v8zM10 19h4V5h-4v14zM16 19h4v-11h-4v11z"/></svg>
+        Statistiques
+      </a>
+      <a href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.9 2.9l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.6V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.9-2.9l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.6-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.6-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.9-2.9l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.6V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.6 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.9 2.9l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.6 1H21a2 2 0 010 4h-.1a1.7 1.7 0 00-1.6 1z"/></svg>
+        Paramètres
+      </a>
+    </nav>
+    <div class="admin-sidebar-foot">
+      <a href="index.html" class="btn btn-ghost btn-sm btn-block">← Retour au site</a>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar reveal">
+      <div>
+        <h1>Tableau de bord</h1>
+        <p style="color:var(--ivory-dim); margin-top:6px;">Interface d'administration — aucune donnée réelle n'est encore connectée.</p>
+      </div>
+      <span class="placeholder-inline">Accès protégé — réservé au rôle admin</span>
+    </div>
+
+    <!-- ---- Indicateurs clés : aucune valeur réelle ---- -->
+    <div class="admin-kpis reveal">
+      <div class="kpi-card"><span class="kpi-label">Documents publiés</span><span class="kpi-value">—</span></div>
+      <div class="kpi-card"><span class="kpi-label">Utilisateurs inscrits</span><span class="kpi-value">—</span></div>
+      <div class="kpi-card"><span class="kpi-label">Matières couvertes</span><span class="kpi-value">10</span></div>
+      <div class="kpi-card"><span class="kpi-label">Consultations totales</span><span class="kpi-value">—</span></div>
+    </div>
+
+    <!-- ---- Gestion des documents ---- -->
+    <div class="admin-panel reveal">
+      <div class="admin-panel-head">
+        <h3>Documents</h3>
+        <button id="btn-toggle-upload" class="btn btn-primary btn-sm">Ajouter un document</button>
+      </div>
+
+      <!-- Formulaire d'ajout (masqué par défaut) -->
+      <form id="form-upload-doc" style="display:none; margin-bottom:28px; padding-bottom:24px; border-bottom:1px solid var(--navy-line);">
+        <div class="grid grid-2" style="gap:16px; margin-bottom:16px;">
+          <div class="field" style="margin-bottom:0;"><label>Titre</label><input type="text" id="doc-titre" required></div>
+          <div class="field" style="margin-bottom:0;"><label>Matière</label>
+            <select id="doc-matiere" required style="width:100%; padding:14px 16px; background:var(--navy); border:1px solid var(--navy-line); border-radius:var(--radius-s); color:var(--ivory);">
+              <option value="Mathématiques">Mathématiques</option>
+              <option value="Informatique">Informatique</option>
+              <option value="Droit">Droit</option>
+              <option value="Français">Français</option>
+              <option value="Anglais">Anglais</option>
+              <option value="Économie">Économie</option>
+              <option value="Philosophie">Philosophie</option>
+              <option value="Sociologie">Sociologie</option>
+              <option value="Histoire">Histoire</option>
+              <option value="Science Politique">Science Politique</option>
+            </select>
+          </div>
+          <div class="field" style="margin-bottom:0;"><label>Année</label><input type="text" id="doc-annee" placeholder="Ex. 2026"></div>
+          <div class="field" style="margin-bottom:0;"><label>Auteur</label><input type="text" id="doc-auteur" placeholder="Nom de l'enseignant"></div>
+          <div class="field" style="margin-bottom:0;"><label>Type</label>
+            <select id="doc-type" required style="width:100%; padding:14px 16px; background:var(--navy); border:1px solid var(--navy-line); border-radius:var(--radius-s); color:var(--ivory);">
+              <option value="Cours">Cours</option>
+              <option value="TD">TD</option>
+              <option value="Examen">Examen</option>
+              <option value="Corrigé">Corrigé</option>
+              <option value="Mémoire">Mémoire</option>
+            </select>
+          </div>
+          <div class="field" style="margin-bottom:0;"><label>Fichier (PDF)</label><input type="file" id="doc-fichier" accept=".pdf" required style="padding:10px;"></div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm">Envoyer le document</button>
+        <p data-form-feedback style="display:none; margin-top:14px; font-size:.85rem;"></p>
+      </form>
+
+      <table class="admin-table" id="table-documents">
+        <thead><tr><th>Titre</th><th>Matière</th><th>Type</th><th>Année</th><th></th></tr></thead>
+        <tbody>
+          <tr><td colspan="5" style="text-align:center; padding:40px 0; color:var(--ivory-dim);">Aucun document</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ---- Gestion des utilisateurs ---- -->
+    <div class="admin-panel reveal">
+      <div class="admin-panel-head">
+        <h3>Utilisateurs enregistrés</h3>
+        <a href="#" class="btn btn-ghost btn-sm">Gérer les rôles</a>
+      </div>
+      <table class="admin-table">
+        <thead>
+          <tr><th>Nom</th><th>Filière</th><th>Rôle</th><th>Statut</th><th>Date d'inscription</th></tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="5" style="text-align:center; padding:40px 0; color:var(--ivory-dim);">Aucun utilisateur enregistré</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+</div>
+
+<script src="js/supabase-client.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/documents.js"></script>
+<script src="js/main.js"></script>
+<script>
+(async () => {
+  // Bloque l'accès si non connecté OU si le rôle n'est pas "admin"
+  const session = await exigerAdmin();
+  if (!session) return;
+
+  /* ---- Documents : chargement + affichage dans le tableau admin ---- */
+  async function rafraichirTableauDocuments() {
+    const documents = await chargerDocuments();
+    const tbody = document.querySelector("#table-documents tbody");
+
+    if (!documents.length) {
+      tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:40px 0; color:var(--ivory-dim);">Aucun document</td></tr>`;
+    } else {
+      tbody.innerHTML = documents.map(doc => `
+        <tr>
+          <td>${doc.titre}</td>
+          <td>${doc.matiere}</td>
+          <td>${doc.type}</td>
+          <td>${doc.annee || "—"}</td>
+          <td><button class="btn btn-ghost btn-sm" data-delete-doc="${doc.id}">Supprimer</button></td>
+        </tr>`).join("");
+    }
+    document.querySelectorAll(".kpi-card")[0].querySelector(".kpi-value").textContent = documents.length;
+  }
+
+  document.querySelector("#table-documents").addEventListener("click", async (e) => {
+    const id = e.target.dataset.deleteDoc;
+    if (!id) return;
+    if (confirm("Supprimer ce document ?")) {
+      await supprimerDocument(id);
+      rafraichirTableauDocuments();
+    }
+  });
+
+  document.getElementById("btn-toggle-upload").addEventListener("click", () => {
+    const form = document.getElementById("form-upload-doc");
+    form.style.display = form.style.display === "none" ? "block" : "none";
+  });
+
+  document.getElementById("form-upload-doc").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const feedback = e.target.querySelector("[data-form-feedback]");
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = "Envoi en cours…";
+
+    const result = await ajouterDocument({
+      titre: document.getElementById("doc-titre").value,
+      matiere: document.getElementById("doc-matiere").value,
+      annee: document.getElementById("doc-annee").value,
+      auteur: document.getElementById("doc-auteur").value,
+      type: document.getElementById("doc-type").value,
+      fichier: document.getElementById("doc-fichier").files[0]
+    });
+
+    feedback.style.display = "block";
+    feedback.style.color = result.success ? "var(--gold)" : "#e08585";
+    feedback.textContent = result.message;
+    btn.disabled = false;
+    btn.textContent = "Envoyer le document";
+
+    if (result.success) {
+      e.target.reset();
+      rafraichirTableauDocuments();
+    }
+  });
+
+  rafraichirTableauDocuments();
+})();
+</script>
+</body>
+</html>

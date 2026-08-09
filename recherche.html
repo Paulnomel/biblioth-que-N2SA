@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recherche — N2SA</title>
+<meta name="description" content="Recherchez un document dans la bibliothèque numérique de N2SA.">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div class="page-loader"><img src="assets/logo.png" alt="Chargement"></div>
+
+<nav class="nav">
+  <div class="container">
+    <a href="index.html" class="nav-brand"><img src="assets/logo.png" alt="Logo N2SA"><div class="nav-brand-text"><strong>N2SA</strong><span>Bibliothèque numérique</span></div></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="bibliotheque.html">Bibliothèque</a></li>
+      <li><a href="categories.html">Catégories</a></li>
+      <li><a href="recherche.html" class="active">Recherche</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions"><a href="connexion.html" class="btn btn-ghost btn-sm">Connexion</a><a href="inscription.html" class="btn btn-primary btn-sm">Inscription</a></div>
+    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html">Accueil</a>
+  <a href="bibliotheque.html">Bibliothèque</a>
+  <a href="categories.html">Catégories</a>
+  <a href="recherche.html" class="active">Recherche</a>
+  <a href="apropos.html">À propos</a>
+  <a href="contact.html">Contact</a>
+  <div class="nav-actions"><a href="connexion.html" class="btn btn-ghost">Connexion</a><a href="inscription.html" class="btn btn-primary">Inscription</a></div>
+</div>
+
+<header class="page-hero">
+  <div class="container">
+    <div class="eyebrow"><span class="trio"><span></span><span></span><span></span></span>&nbsp;Trouvez ce qu'il vous faut</div>
+    <h1>Recherche</h1>
+    <p>Recherche instantanée par titre, matière ou mot-clé (interface prête, à connecter au fonds documentaire réel).</p>
+    <div class="search-bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input type="text" placeholder="Rechercher un document…" data-search-input>
+    </div>
+    <div class="chip-row">
+      <span class="chip active" data-chip="tous">Tous</span>
+      <span class="chip" data-chip="Cours">Cours</span>
+      <span class="chip" data-chip="TD">TD</span>
+      <span class="chip" data-chip="Examen">Examens</span>
+      <span class="chip" data-chip="Corrigé">Corrigés</span>
+      <span class="chip" data-chip="Mémoire">Mémoires</span>
+    </div>
+  </div>
+</header>
+
+<section class="section section-tight">
+  <div class="container lib-layout">
+    <aside class="filters reveal">
+      <h4>Matière</h4>
+      <div class="filter-group">
+        <label class="filter-option"><input type="checkbox" data-filter="matiere" value="Mathématiques"> Mathématiques</label>
+        <label class="filter-option"><input type="checkbox" data-filter="matiere" value="Informatique"> Informatique</label>
+        <label class="filter-option"><input type="checkbox" data-filter="matiere" value="Droit"> Droit</label>
+        <label class="filter-option"><input type="checkbox" data-filter="matiere" value="Français"> Français</label>
+        <label class="filter-option"><input type="checkbox" data-filter="matiere" value="Anglais"> Anglais</label>
+        <label class="filter-option"><input type="checkbox" data-filter="matiere" value="Économie"> Économie</label>
+        <label class="filter-option"><input type="checkbox" data-filter="matiere" value="Philosophie"> Philosophie</label>
+        <label class="filter-option"><input type="checkbox" data-filter="matiere" value="Sociologie"> Sociologie</label>
+        <label class="filter-option"><input type="checkbox" data-filter="matiere" value="Histoire"> Histoire</label>
+        <label class="filter-option"><input type="checkbox" data-filter="matiere" value="Science Politique"> Science Politique</label>
+      </div>
+      <h4>Année</h4>
+      <div class="filter-group">
+        <label class="filter-option"><input type="checkbox" data-filter="annee" value="2026"> 2026</label>
+        <label class="filter-option"><input type="checkbox" data-filter="annee" value="2025"> 2025</label>
+        <label class="filter-option"><input type="checkbox" data-filter="annee" value="2024"> 2024</label>
+      </div>
+      <button class="filter-reset" data-reset-filters>Réinitialiser les filtres</button>
+    </aside>
+
+    <div>
+      <div class="toolbar"><span class="count"><span data-result-count>0</span> résultats</span></div>
+
+      <div class="grid grid-2" id="search-grid">
+        <!-- Les résultats de recherche réels s'afficheront ici sous forme de .doc-card. -->
+      </div>
+
+      <div class="empty-state" data-empty-state>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <h3>Aucun document disponible</h3>
+        <p>La recherche s'activera automatiquement dès que des documents seront ajoutés à la bibliothèque.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><img src="assets/logo.png" alt="Logo N2SA"><strong>N2SA</strong></div>
+        <p class="desc">Emplacement réservé — nom complet et description officielle de l'association à ajouter.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-9h3l1-4h-4V7c0-1 .3-2 2-2h2V1.1C16.6 1 15.4 1 14 1c-3 0-5 1.8-5 5v3H6v4h3v9h4z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H18v-5.4c0-1.3-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21H10z"/></svg></a>
+        </div>
+      </div>
+      <div><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="bibliotheque.html">Bibliothèque</a></li><li><a href="categories.html">Catégories</a></li><li><a href="recherche.html">Recherche</a></li></ul></div>
+      <div><h4>Ressources</h4><ul><li><a href="apropos.html">À propos</a></li><li><a href="profil.html">Mon profil</a></li><li><a href="connexion.html">Connexion</a></li><li><a href="inscription.html">Inscription</a></li><li><a href="admin.html">Espace administrateur</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li>Adresse e-mail à ajouter</li><li>Téléphone à ajouter</li><li>Adresse à ajouter</li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 N2SA. Tous droits réservés.</span>
+      <div style="display:flex; gap:22px;"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/supabase-client.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/documents.js"></script>
+<script src="js/main.js"></script>
+<script>afficherDocuments("search-grid");</script>
+</body>
+</html>

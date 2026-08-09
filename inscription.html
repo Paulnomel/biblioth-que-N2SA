@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inscription — N2SA</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div class="page-loader"><img src="assets/logo.png" alt="Chargement"></div>
+
+<div class="auth-wrap">
+  <div class="auth-side">
+    <div class="auth-side-content">
+      <a href="index.html"><img src="assets/logo.png" alt="Logo N2SA" class="logo-big"></a>
+      <div class="eyebrow"><span class="trio"><span></span><span></span><span></span></span>&nbsp;Rejoindre N2SA</div>
+      <h2 style="margin-top:14px;">Un compte réservé aux membres de l'association.</h2>
+      <p style="margin-top:16px;">L'inscription vous donnera accès à la bibliothèque numérique de N2SA dès l'activation de votre compte.</p>
+    </div>
+  </div>
+
+  <div class="auth-form-col">
+    <div class="auth-form">
+      <div class="eyebrow"><span class="trio"><span></span><span></span><span></span></span>&nbsp;Nouveau membre</div>
+      <h1>Créer un compte</h1>
+      <p>Interface connectée à Supabase — votre compte est créé immédiatement après validation du formulaire.</p>
+
+      <!-- Formulaire connecté à Supabase via js/auth.js -->
+      <form id="form-inscription">
+        <div class="field-row">
+          <div class="field">
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" placeholder="Votre prénom" required>
+          </div>
+          <div class="field">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" placeholder="Votre nom" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="email2">Adresse e-mail</label>
+          <input type="email" id="email2" placeholder="prenom.nom@univ.edu" required>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="filiere">Filière</label>
+            <input type="text" id="filiere" placeholder="Ex. Droit, Informatique…">
+          </div>
+          <div class="field">
+            <label for="niveau">Niveau d'étude</label>
+            <input type="text" id="niveau" placeholder="Ex. Licence 2">
+          </div>
+        </div>
+        <div class="field">
+          <label for="password2">Mot de passe</label>
+          <input type="password" id="password2" placeholder="8 caractères minimum" required minlength="6">
+        </div>
+        <div class="field">
+          <label for="password3">Confirmation du mot de passe</label>
+          <input type="password" id="password3" placeholder="Répétez le mot de passe" required minlength="6">
+        </div>
+        <div class="field-check" style="margin-bottom:24px;">
+          <input type="checkbox" id="cgu" required>
+          <label for="cgu" style="margin:0; text-transform:none; font-size:.87rem; font-weight:400; color:var(--ivory-dim);">J'accepte les conditions d'utilisation et la politique de confidentialité.</label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Créer mon compte</button>
+        <p data-form-feedback style="display:none; margin-top:16px; font-size:.85rem; text-align:center;"></p>
+      </form>
+
+      <p class="auth-switch">Vous avez déjà un compte ? <a href="connexion.html">Se connecter</a></p>
+      <p class="auth-switch" style="margin-top:8px;"><a href="index.html">← Retour à l'accueil</a></p>
+    </div>
+  </div>
+</div>
+
+<script src="js/supabase-client.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById("form-inscription").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const feedback = e.target.querySelector('[data-form-feedback]');
+    const motDePasse = document.getElementById("password2").value;
+    const confirmation = document.getElementById("password3").value;
+
+    if (motDePasse !== confirmation) {
+      feedback.style.display = "block";
+      feedback.style.color = "#e08585";
+      feedback.textContent = "Les mots de passe ne correspondent pas.";
+      return;
+    }
+
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = "Création en cours…";
+
+    const result = await inscrireMembre({
+      prenom: document.getElementById("prenom").value,
+      nom: document.getElementById("nom").value,
+      email: document.getElementById("email2").value,
+      filiere: document.getElementById("filiere").value,
+      niveau: document.getElementById("niveau").value,
+      motDePasse
+    });
+
+    feedback.style.display = "block";
+    feedback.style.color = result.success ? "var(--gold)" : "#e08585";
+    feedback.textContent = result.message;
+    btn.disabled = false;
+    btn.textContent = "Créer mon compte";
+    if (result.success) e.target.reset();
+  });
+</script>
+</body>
+</html>

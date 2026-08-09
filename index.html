@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N2SA — Bibliothèque numérique universitaire</title>
+<meta name="description" content="Plateforme numérique de l'association N2SA : accès aux cours, TD, examens, corrigés et mémoires des membres.">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<div class="page-loader"><img src="assets/logo.png" alt="Chargement"></div>
+
+<!-- ================= NAVIGATION ================= -->
+<nav class="nav">
+  <div class="container">
+    <a href="index.html" class="nav-brand">
+      <img src="assets/logo.png" alt="Logo N2SA">
+      <div class="nav-brand-text"><strong>N2SA</strong><span>Bibliothèque numérique</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Accueil</a></li>
+      <li><a href="bibliotheque.html">Bibliothèque</a></li>
+      <li><a href="categories.html">Catégories</a></li>
+      <li><a href="recherche.html">Recherche</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="connexion.html" class="btn btn-ghost btn-sm">Connexion</a>
+      <a href="inscription.html" class="btn btn-primary btn-sm">Inscription</a>
+    </div>
+    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html" class="active">Accueil</a>
+  <a href="bibliotheque.html">Bibliothèque</a>
+  <a href="categories.html">Catégories</a>
+  <a href="recherche.html">Recherche</a>
+  <a href="apropos.html">À propos</a>
+  <a href="contact.html">Contact</a>
+  <div class="nav-actions">
+    <a href="connexion.html" class="btn btn-ghost">Connexion</a>
+    <a href="inscription.html" class="btn btn-primary">Inscription</a>
+  </div>
+</div>
+
+<!-- ================= HERO =================
+     Le slogan officiel n'a pas encore été fourni : emplacement réservé
+     ci-dessous, à remplacer par le vrai slogan de l'association. -->
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow hero-eyebrow"><span class="trio"><span></span><span></span><span></span></span>&nbsp;Bibliothèque numérique universitaire</div>
+      <h1>N2SA</h1>
+      <p class="placeholder-inline" style="margin-top:14px;">Emplacement réservé — slogan de l'association à ajouter</p>
+      <p class="hero-lede">Cette plateforme donnera accès aux membres de l'association N2SA à une bibliothèque numérique regroupant cours, travaux dirigés, examens, corrigés et mémoires.</p>
+      <div class="hero-cta">
+        <a href="bibliotheque.html" class="btn btn-primary">Explorer la bibliothèque</a>
+        <a href="apropos.html" class="btn btn-ghost">Découvrir l'association</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>10</strong><span>Matières</span></div>
+      </div>
+    </div>
+    <div class="hero-crest">
+      <div class="hero-crest-ring">
+        <img src="assets/logo.png" alt="Logo de l'association N2SA">
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= STATISTIQUES =================
+     Aucune statistique réelle n'est disponible pour le moment. -->
+<section class="section-tight reveal">
+  <div class="container">
+    <div class="placeholder-block">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 19h4v-8H4v8zM10 19h4V5h-4v14zM16 19h4v-11h-4v11z"/></svg>
+      <strong>Aucune donnée disponible</strong>
+      <span>Les statistiques de la plateforme (documents, membres, matières) s'afficheront ici une fois la base de données connectée.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CATÉGORIES ================= -->
+<section class="section section-tight" style="background:var(--navy-raised); border-top:1px solid var(--navy-line); border-bottom:1px solid var(--navy-line);">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="trio"><span></span><span></span><span></span></span>&nbsp;Explorer par matière</div>
+      <h2>Dix matières, un seul espace.</h2>
+      <p>Retrouvez l'ensemble des ressources classées par discipline pour naviguer plus rapidement vers ce dont vous avez besoin.</p>
+    </div>
+    <div class="grid grid-4">
+      <a href="bibliotheque.html" class="cat-card reveal" style="--i:0">
+        <div class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19V6a2 2 0 012-2h5v17H6a2 2 0 01-2-2z"/><path d="M11 4h7a2 2 0 012 2v13a2 2 0 01-2 2h-7"/><path d="M15 9h3M15 13h3"/></svg></div>
+        <h3>Mathématiques</h3><div class="cat-count">Aucun document pour l'instant</div>
+      </a>
+      <a href="bibliotheque.html" class="cat-card reveal" style="--i:1">
+        <div class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 8l-5 4 5 4M15 8l5 4-5 4"/></svg></div>
+        <h3>Informatique</h3><div class="cat-count">Aucun document pour l'instant</div>
+      </a>
+      <a href="bibliotheque.html" class="cat-card reveal" style="--i:2">
+        <div class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8l3.5 1L5 16h7L8.5 9 5 8z"/><path d="M19 8l-3.5 1L19 16h-7l3.5-7L19 8z"/><path d="M12 3v18M9 21h6"/></svg></div>
+        <h3>Droit</h3><div class="cat-count">Aucun document pour l'instant</div>
+      </a>
+      <a href="bibliotheque.html" class="cat-card reveal" style="--i:3">
+        <div class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+        <h3>Français</h3><div class="cat-count">Aucun document pour l'instant</div>
+      </a>
+      <a href="bibliotheque.html" class="cat-card reveal" style="--i:4">
+        <div class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 4 6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-6-4-9s1.5-6.4 4-9z"/></svg></div>
+        <h3>Anglais</h3><div class="cat-count">Aucun document pour l'instant</div>
+      </a>
+      <a href="bibliotheque.html" class="cat-card reveal" style="--i:5">
+        <div class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19h16M6 19V9l4-3 4 3v10M14 19v-6l4-2v8"/></svg></div>
+        <h3>Économie</h3><div class="cat-count">Aucun document pour l'instant</div>
+      </a>
+      <a href="bibliotheque.html" class="cat-card reveal" style="--i:6">
+        <div class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M9 10a3 3 0 116 0c0 2-3 2-3 4.5M12 17.5v.01"/></svg></div>
+        <h3>Philosophie</h3><div class="cat-count">Aucun document pour l'instant</div>
+      </a>
+      <a href="bibliotheque.html" class="cat-card reveal" style="--i:7">
+        <div class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="9" r="2.5"/><circle cx="16" cy="9" r="2.5"/><path d="M3 19c0-2.8 2.2-5 5-5s5 2.2 5 5M11 19c0-2.8 2.2-5 5-5s5 2.2 5 5"/></svg></div>
+        <h3>Sociologie</h3><div class="cat-count">Aucun document pour l'instant</div>
+      </a>
+      <a href="bibliotheque.html" class="cat-card reveal" style="--i:0">
+        <div class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 8v8M8 12h8"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <h3>Histoire</h3><div class="cat-count">Aucun document pour l'instant</div>
+      </a>
+      <a href="bibliotheque.html" class="cat-card reveal" style="--i:1">
+        <div class="cat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 21V4l10 4-10 4"/><path d="M6 12v9"/></svg></div>
+        <h3>Science Politique</h3><div class="cat-count">Aucun document pour l'instant</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DOCUMENTS RÉCENTS =================
+     Aucun document n'a encore été ajouté. -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="trio"><span></span><span></span><span></span></span>&nbsp;Fraîchement ajoutés</div>
+      <h2>Les derniers documents publiés</h2>
+    </div>
+    <div class="grid grid-4" id="recent-doc-grid"></div>
+    <div class="empty-state" data-empty-state>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 4h9l4 4v12H6z"/><path d="M15 4v4h4"/></svg>
+      <h3>Aucun document ajouté</h3>
+      <p>Les documents récemment déposés dans la bibliothèque apparaîtront automatiquement ici.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRÉSENTATION DE L'ASSOCIATION =================
+     Aucune information officielle fournie : emplacement réservé. -->
+<section class="section section-tight">
+  <div class="container">
+    <div class="panel-pale" style="padding:64px; display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center;">
+      <div class="reveal">
+        <div class="eyebrow" style="color:var(--gold-dim);"><span class="trio"><span style="background:var(--gold-dim)"></span><span style="background:var(--gold-dim)"></span><span style="background:var(--gold-dim)"></span></span>&nbsp;L'association</div>
+        <h2 style="margin-top:14px; font-size:2.1rem;">N2SA</h2>
+        <p style="margin-top:18px; line-height:1.8;">Emplacement réservé — présentation officielle de l'association (mission, historique, nom complet) à ajouter ultérieurement.</p>
+        <a href="apropos.html" class="btn btn-primary" style="margin-top:28px; background:var(--navy); color:var(--pale); box-shadow:none;">En savoir plus</a>
+      </div>
+      <div class="reveal" style="display:flex; justify-content:center;">
+        <img src="assets/logo.png" alt="Logo N2SA" style="width:220px;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ =================
+     Structure vide, prête à recevoir de vraies questions/réponses. -->
+<section class="section" style="background:var(--navy-raised); border-top:1px solid var(--navy-line);">
+  <div class="container" style="max-width:840px;">
+    <div class="section-head center reveal">
+      <div class="eyebrow"><span class="trio"><span></span><span></span><span></span></span>&nbsp;Questions fréquentes</div>
+      <h2>Foire aux questions</h2>
+    </div>
+    <div class="placeholder-block reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 015 0c0 1.7-2.5 2-2.5 4M12 16.5v.01"/></svg>
+      <strong>Aucune question ajoutée pour le moment</strong>
+      <span>Cette section affichera les questions fréquentes une fois qu'elles auront été rédigées par l'association.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="section">
+  <div class="container">
+    <div class="cta-band reveal">
+      <div class="eyebrow center"><span class="trio"><span></span><span></span><span></span></span>&nbsp;Rejoignez la communauté</div>
+      <h2>Prêt à explorer la bibliothèque de N2SA ?</h2>
+      <p>Créez votre compte grâce à votre code N2SA et accédez à l'ensemble du fonds documentaire dès sa mise en ligne.</p>
+      <div class="hero-cta"><a href="inscription.html" class="btn btn-primary">Créer un compte</a><a href="bibliotheque.html" class="btn btn-ghost">Parcourir la bibliothèque</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER =================
+     Coordonnées et liens réseaux sociaux : emplacements à personnaliser. -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><img src="assets/logo.png" alt="Logo N2SA"><strong>N2SA</strong></div>
+        <p class="desc">Emplacement réservé — nom complet et description officielle de l'association à ajouter.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-9h3l1-4h-4V7c0-1 .3-2 2-2h2V1.1C16.6 1 15.4 1 14 1c-3 0-5 1.8-5 5v3H6v4h3v9h4z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H18v-5.4c0-1.3-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21H10z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="bibliotheque.html">Bibliothèque</a></li>
+          <li><a href="categories.html">Catégories</a></li>
+          <li><a href="recherche.html">Recherche</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="apropos.html">À propos</a></li>
+          <li><a href="profil.html">Mon profil</a></li>
+          <li><a href="connexion.html">Connexion</a></li>
+          <li><a href="inscription.html">Inscription</a></li>
+          <li><a href="admin.html">Espace administrateur</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>Adresse e-mail à ajouter</li>
+          <li>Téléphone à ajouter</li>
+          <li>Adresse à ajouter</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 N2SA. Tous droits réservés.</span>
+      <span> développé par NOMEL PAUL</span>
+      <div style="display:flex; gap:22px;"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/supabase-client.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/documents.js"></script>
+<script src="js/main.js"></script>
+<script>afficherDocuments("recent-doc-grid", 4);</script>
+</body>
+</html>
