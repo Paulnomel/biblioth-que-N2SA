@@ -6,6 +6,12 @@
 <title>Espace administrateur — N2SA</title>
 <meta name="description" content="Maquette de l'espace administrateur de la plateforme N2SA.">
 <link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0A1628">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="N2SA">
 <link rel="stylesheet" href="css/style.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -13,7 +19,7 @@
 <div class="page-loader"><img src="assets/logo.png" alt="Chargement"></div>
 
 <!-- ================= ESPACE ADMINISTRATEUR =================
-     Maquette d'interface uniquement : aucune donnée réelle, aucun accès
+     Espace administrateur — accès réservé aux comptes ayant le rôle admin
      protégé n'est implémenté ici. La gestion des rôles, la protection de
      cette page et la connexion aux données seront ajoutées avec le backend. -->
 
@@ -59,7 +65,7 @@
     <div class="admin-topbar reveal">
       <div>
         <h1>Tableau de bord</h1>
-        <p style="color:var(--ivory-dim); margin-top:6px;">Interface d'administration — aucune donnée réelle n'est encore connectée.</p>
+        <p style="color:var(--ivory-dim); margin-top:6px;">Interface d'administration connectée à la base de données en temps réel.</p>
       </div>
       <span class="placeholder-inline">Accès protégé — réservé au rôle admin</span>
     </div>

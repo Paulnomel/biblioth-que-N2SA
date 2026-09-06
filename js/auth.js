@@ -20,7 +20,7 @@ async function inscrireMembre({ prenom, nom, email, filiere, niveau, motDePasse 
   if (error) {
     return { success: false, message: traduireErreur(error.message) };
   }
-  return { success: true, message: "Compte créé ! Vérifiez votre boîte mail pour confirmer votre adresse." };
+  return { success: true, message: "Compte créé avec succès ! Vous pouvez maintenant vous connecter." };
 }
 
 /* ---------------------------------------------------------

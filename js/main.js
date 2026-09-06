@@ -188,3 +188,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+
+/* ==========================================================================
+   Enregistrement du Service Worker (PWA)
+   Rend le site installable (icône sur l'écran d'accueil, ouverture en
+   plein écran) et met en cache les fichiers statiques pour un chargement
+   plus rapide et un fonctionnement minimal hors connexion.
+   Le chemin relatif "./sw.js" garantit que ça fonctionne aussi bien en
+   local (Live Server) qu'en ligne (GitHub Pages, même dans un sous-dossier).
+   ========================================================================== */
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch((err) => {
+      console.warn("Service worker non enregistré :", err.message);
+    });
+  });
+}
