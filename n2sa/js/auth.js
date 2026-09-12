@@ -110,36 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ---------------------------------------------------------
-   GESTION DES UTILISATEURS (espace administrateur)
-   --------------------------------------------------------- */
-
-/* Récupère tous les profils, du plus récent au plus ancien. */
-async function chargerUtilisateurs() {
-  const { data, error } = await db
-    .from("profiles")
-    .select("id, prenom, nom, filiere, niveau, role, created_at")
-    .order("created_at", { ascending: false });
-
-  if (error) {
-    console.error("Erreur de chargement des utilisateurs :", error.message);
-    return [];
-  }
-  return data;
-}
-
-/* Change le rôle d'un membre ('membre' <-> 'admin'). Réservé aux admins
-   (la policy RLS "Les admins modifient tous les profils" l'impose déjà
-   côté base de données ; ce n'est pas juste une restriction visuelle). */
-async function changerRoleUtilisateur(userId, nouveauRole) {
-  const { error } = await db
-    .from("profiles")
-    .update({ role: nouveauRole })
-    .eq("id", userId);
-
-  return !error;
-}
-
-/* ---------------------------------------------------------
    Traduction simple des messages d'erreur Supabase en français
    --------------------------------------------------------- */
 function traduireErreur(message) {

@@ -132,17 +132,17 @@
     <div class="admin-panel reveal">
       <div class="admin-panel-head">
         <h3>Utilisateurs enregistrés</h3>
+        <a href="#" class="btn btn-ghost btn-sm">Gérer les rôles</a>
       </div>
-      <table class="admin-table" id="table-utilisateurs">
+      <table class="admin-table">
         <thead>
-          <tr><th>Nom</th><th>Filière</th><th>Niveau</th><th>Rôle</th><th>Date d'inscription</th><th></th></tr>
+          <tr><th>Nom</th><th>Filière</th><th>Rôle</th><th>Statut</th><th>Date d'inscription</th></tr>
         </thead>
         <tbody>
-          <tr><td colspan="6" style="text-align:center; padding:40px 0; color:var(--ivory-dim);">Aucun utilisateur enregistré</td></tr>
+          <tr><td colspan="5" style="text-align:center; padding:40px 0; color:var(--ivory-dim);">Aucun utilisateur enregistré</td></tr>
         </tbody>
       </table>
     </div>
-    <p style="color:var(--ivory-dim); font-size:.82rem; margin-top:-14px; margin-bottom:28px;">Le rôle « Admin » donne accès à cet espace administrateur et à la gestion des documents.</p>
 
   </main>
 </div>
@@ -219,64 +219,7 @@
     }
   });
 
-  /* ---- Utilisateurs : chargement + affichage + changement de rôle ---- */
-  async function rafraichirTableauUtilisateurs() {
-    const utilisateurs = await chargerUtilisateurs();
-    const tbody = document.querySelector("#table-utilisateurs tbody");
-
-    document.querySelectorAll(".kpi-card")[1].querySelector(".kpi-value").textContent = utilisateurs.length;
-
-    if (!utilisateurs.length) {
-      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:40px 0; color:var(--ivory-dim);">Aucun utilisateur enregistré</td></tr>`;
-      return;
-    }
-
-    tbody.innerHTML = utilisateurs.map(u => {
-      const nomComplet = `${u.prenom || ""} ${u.nom || ""}`.trim() || "—";
-      const estAdmin = u.role === "admin";
-      const estMoi = u.id === session.user.id;
-      const dateInscription = new Date(u.created_at).toLocaleDateString("fr-FR");
-      return `
-        <tr>
-          <td>${nomComplet}${estMoi ? ' <span style="color:var(--gold-dim); font-size:.78rem;">(vous)</span>' : ''}</td>
-          <td>${u.filiere || "—"}</td>
-          <td>${u.niveau || "—"}</td>
-          <td><span class="role-badge ${estAdmin ? 'admin' : 'membre'}">${estAdmin ? 'Admin' : 'Membre'}</span></td>
-          <td>${dateInscription}</td>
-          <td>
-            <button class="btn btn-ghost btn-sm" data-toggle-role="${u.id}" data-role-actuel="${u.role}" ${estMoi ? 'disabled title="Impossible de modifier votre propre rôle depuis ici"' : ''}>
-              ${estAdmin ? 'Retirer admin' : 'Nommer admin'}
-            </button>
-          </td>
-        </tr>`;
-    }).join("");
-  }
-
-  document.querySelector("#table-utilisateurs").addEventListener("click", async (e) => {
-    const btn = e.target.closest("[data-toggle-role]");
-    if (!btn || btn.disabled) return;
-
-    const userId = btn.dataset.toggleRole;
-    const roleActuel = btn.dataset.roleActuel;
-    const nouveauRole = roleActuel === "admin" ? "membre" : "admin";
-    const message = nouveauRole === "admin"
-      ? "Donner les droits administrateur à ce membre ?"
-      : "Retirer les droits administrateur à ce membre ?";
-
-    if (!confirm(message)) return;
-
-    btn.disabled = true;
-    const succes = await changerRoleUtilisateur(userId, nouveauRole);
-    if (succes) {
-      rafraichirTableauUtilisateurs();
-    } else {
-      alert("Une erreur est survenue. Réessayez.");
-      btn.disabled = false;
-    }
-  });
-
   rafraichirTableauDocuments();
-  rafraichirTableauUtilisateurs();
 })();
 </script>
 </body>

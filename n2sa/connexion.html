@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connexion — N2SA</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0A1628">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="N2SA">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div class="page-loader"><img src="assets/logo.png" alt="Chargement"></div>
+
+<div class="auth-wrap">
+  <div class="auth-side">
+    <div class="auth-side-content">
+      <a href="index.html"><img src="assets/logo.png" alt="Logo N2SA" class="logo-big"></a>
+      <div class="eyebrow"><span class="trio"><span></span><span></span><span></span></span>&nbsp;Bibliothèque numérique</div>
+      <h2 style="margin-top:14px;">Espace réservé aux membres de N2SA.</h2>
+      <p style="margin-top:16px;">Connectez-vous pour accéder à la bibliothèque numérique de l'association une fois votre compte activé.</p>
+    </div>
+  </div>
+
+  <div class="auth-form-col">
+    <div class="auth-form">
+      <div class="eyebrow"><span class="trio"><span></span><span></span><span></span></span>&nbsp;Espace membre</div>
+      <h1>Connexion</h1>
+      <p>Entrez vos identifiants pour continuer.</p>
+
+      <!-- Formulaire connecté à Supabase via js/auth.js -->
+      <form id="form-connexion">
+        <div class="field">
+          <label for="email">Adresse e-mail</label>
+          <input type="email" id="email" placeholder="prenom.nom@univ.edu" required>
+        </div>
+        <div class="field">
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" placeholder="••••••••••" required>
+        </div>
+        <div class="form-between">
+          <label class="field-check"><input type="checkbox"> Se souvenir de moi</label>
+          <a href="#">Mot de passe oublié ?</a>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+        <p data-form-feedback style="display:none; margin-top:16px; font-size:.85rem; text-align:center;"></p>
+      </form>
+
+      <p class="auth-switch">Pas encore de compte ? <a href="inscription.html">Créer un compte</a></p>
+      <p class="auth-switch" style="margin-top:8px;"><a href="index.html">← Retour à l'accueil</a></p>
+    </div>
+  </div>
+</div>
+
+<script src="js/supabase-client.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById("form-connexion").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const feedback = e.target.querySelector('[data-form-feedback]');
+    btn.disabled = true;
+    btn.textContent = "Connexion en cours…";
+
+    const result = await connecterMembre({
+      email: document.getElementById("email").value,
+      motDePasse: document.getElementById("password").value
+    });
+
+    feedback.style.display = "block";
+    if (result.success) {
+      feedback.style.color = "var(--gold)";
+      feedback.textContent = "Connexion réussie. Redirection…";
+      window.location.href = "profil.html";
+    } else {
+      feedback.style.color = "#e08585";
+      feedback.textContent = result.message;
+      btn.disabled = false;
+      btn.textContent = "Se connecter";
+    }
+  });
+</script>
+</body>
+</html>
