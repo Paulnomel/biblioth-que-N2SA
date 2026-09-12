@@ -35,23 +35,23 @@
       <div><strong>N2SA</strong><span>Administration</span></div>
     </div>
     <nav class="admin-nav">
-      <a href="#" class="active">
+      <a href="#top" data-admin-link class="active">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
         Tableau de bord
       </a>
-      <a href="#">
+      <a href="#section-documents" data-admin-link>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4h9l4 4v12H6z"/><path d="M15 4v4h4"/></svg>
         Gestion des documents
       </a>
-      <a href="#">
+      <a href="#section-utilisateurs" data-admin-link>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5"/><circle cx="17.5" cy="8.5" r="2.4"/><path d="M15.8 13.7c2.7.4 4.7 2.8 4.7 5.8"/></svg>
         Gestion des utilisateurs
       </a>
-      <a href="#">
+      <a href="#section-statistiques" data-admin-link>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19h4v-8H4v8zM10 19h4V5h-4v14zM16 19h4v-11h-4v11z"/></svg>
         Statistiques
       </a>
-      <a href="#">
+      <a href="#section-parametres" data-admin-link>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.9 2.9l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.6V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.9-2.9l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.6-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.6-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.9-2.9l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.6V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.6 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.9 2.9l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.6 1H21a2 2 0 010 4h-.1a1.7 1.7 0 00-1.6 1z"/></svg>
         Paramètres
       </a>
@@ -61,7 +61,7 @@
     </div>
   </aside>
 
-  <main class="admin-main">
+  <main class="admin-main" id="top">
     <div class="admin-topbar reveal">
       <div>
         <h1>Tableau de bord</h1>
@@ -70,8 +70,8 @@
       <span class="placeholder-inline">Accès protégé — réservé au rôle admin</span>
     </div>
 
-    <!-- ---- Indicateurs clés : aucune valeur réelle ---- -->
-    <div class="admin-kpis reveal">
+    <!-- ---- Indicateurs clés ---- -->
+    <div class="admin-kpis reveal" id="section-statistiques">
       <div class="kpi-card"><span class="kpi-label">Documents publiés</span><span class="kpi-value">—</span></div>
       <div class="kpi-card"><span class="kpi-label">Utilisateurs inscrits</span><span class="kpi-value">—</span></div>
       <div class="kpi-card"><span class="kpi-label">Matières couvertes</span><span class="kpi-value">10</span></div>
@@ -79,7 +79,7 @@
     </div>
 
     <!-- ---- Gestion des documents ---- -->
-    <div class="admin-panel reveal">
+    <div class="admin-panel reveal" id="section-documents">
       <div class="admin-panel-head">
         <h3>Documents</h3>
         <button id="btn-toggle-upload" class="btn btn-primary btn-sm">Ajouter un document</button>
@@ -129,7 +129,7 @@
     </div>
 
     <!-- ---- Gestion des utilisateurs ---- -->
-    <div class="admin-panel reveal">
+    <div class="admin-panel reveal" id="section-utilisateurs">
       <div class="admin-panel-head">
         <h3>Utilisateurs enregistrés</h3>
       </div>
@@ -144,6 +144,18 @@
     </div>
     <p style="color:var(--ivory-dim); font-size:.82rem; margin-top:-14px; margin-bottom:28px;">Le rôle « Admin » donne accès à cet espace administrateur et à la gestion des documents.</p>
 
+    <!-- ---- Paramètres : rien à configurer pour le moment ---- -->
+    <div class="admin-panel reveal" id="section-parametres">
+      <div class="admin-panel-head">
+        <h3>Paramètres</h3>
+      </div>
+      <div class="empty-state" style="padding:50px 20px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.9 2.9l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.6V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.9-2.9l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.6-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.6-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.9-2.9l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.6V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.6 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.9 2.9l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.6 1H21a2 2 0 010 4h-.1a1.7 1.7 0 00-1.6 1z"/></svg>
+        <h3>Aucun réglage disponible pour le moment</h3>
+        <p>Cette section accueillera de futurs réglages du site (par exemple la gestion du contenu de la page À propos, ou des options d'affichage).</p>
+      </div>
+    </div>
+
   </main>
 </div>
 
@@ -156,6 +168,14 @@
   // Bloque l'accès si non connecté OU si le rôle n'est pas "admin"
   const session = await exigerAdmin();
   if (!session) return;
+
+  /* ---- Marque le lien cliqué comme actif dans le menu latéral ---- */
+  document.querySelectorAll("[data-admin-link]").forEach(link => {
+    link.addEventListener("click", () => {
+      document.querySelectorAll("[data-admin-link]").forEach(l => l.classList.remove("active"));
+      link.classList.add("active");
+    });
+  });
 
   /* ---- Documents : chargement + affichage dans le tableau admin ---- */
   async function rafraichirTableauDocuments() {
