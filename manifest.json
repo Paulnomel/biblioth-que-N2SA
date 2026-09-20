@@ -1,7 +1,7 @@
 {
-  "name": "N2SA — Bibliothèque numérique",
-  "short_name": "N2SA",
-  "description": "Bibliothèque numérique de l'association N2SA : cours, TD, examens, corrigés et mémoires.",
+  "name": "AC-lS — Bibliothèque numérique",
+  "short_name": "AC-lS",
+  "description": "Bibliothèque numérique de l'association AC-lS : cours, TD, examens, corrigés et mémoires.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
