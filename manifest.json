@@ -1,7 +1,7 @@
 {
-  "name": "AC-lS — Bibliothèque numérique",
-  "short_name": "AC-lS",
-  "description": "Bibliothèque numérique de l'association AC-lS : cours, TD, examens, corrigés et mémoires.",
+  "name": "AC-LS — Bibliothèque numérique",
+  "short_name": "AC-LS",
+  "description": "Bibliothèque numérique de l'association AC-LS : cours, TD, examens, corrigés et mémoires.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
