@@ -92,8 +92,21 @@ async function afficherDocuments(containerId, limite = null) {
 async function ajouterDocument({ titre, matiere, annee, auteur, type, fichier }) {
   if (!fichier) return { success: false, message: "Aucun fichier sélectionné." };
 
-  // Nom de fichier unique pour éviter les écrasements dans le bucket
-  const cheminFichier = `${Date.now()}-${fichier.name.replace(/\s+/g, "-")}`;
+  // Nom de fichier unique et "propre" pour le bucket : Supabase Storage
+  // refuse les accents et certains caractères spéciaux dans les noms de
+  // fichiers (erreur "Invalid key"). On retire donc les accents (é → e,
+  // à → a...) et on ne garde que lettres, chiffres, points, tirets et
+  // underscores, en préservant l'extension d'origine (.pdf, etc.).
+  const nomOriginal = fichier.name;
+  const extension = nomOriginal.includes(".") ? nomOriginal.slice(nomOriginal.lastIndexOf(".")) : "";
+  const nomSansExtension = extension ? nomOriginal.slice(0, -extension.length) : nomOriginal;
+  const nomNettoye = nomSansExtension
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")   // retire les accents
+    .replace(/[^a-zA-Z0-9._-]+/g, "-")                    // remplace tout le reste (espaces, apostrophes...) par un tiret
+    .replace(/-+/g, "-")                                  // évite les tirets multiples
+    .replace(/^-+|-+$/g, "");                             // retire les tirets en début/fin
+
+  const cheminFichier = `${Date.now()}-${nomNettoye || "document"}${extension.toLowerCase()}`;
 
   const { error: uploadError } = await db.storage
     .from("documents")
