@@ -13,7 +13,7 @@
      sont jamais mis en cache : ils doivent toujours venir du réseau.
    ========================================================================== */
 
-const CACHE_NAME = "n2sa-cache-v2";
+const CACHE_NAME = "n2sa-cache-v3";
 
 const STATIC_ASSETS = [
   "./",
