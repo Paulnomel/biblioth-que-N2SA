@@ -146,6 +146,17 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('change', (e) => {
     if (e.target.matches('[data-filter]')) filterDocs();
   });
+
+  /* ---- Pré-filtrage depuis un lien externe (ex : Catégories) ----
+     Si l'URL contient ?matiere=XXX (posé par les cartes de categories.html),
+     on coche automatiquement la case correspondante avant le premier
+     filtrage, pour arriver directement sur les documents de cette matière. */
+  const matiereDepuisURL = new URLSearchParams(window.location.search).get('matiere');
+  if (matiereDepuisURL) {
+    const checkbox = document.querySelector(`[data-filter="matiere"][value="${CSS.escape(matiereDepuisURL)}"]`);
+    if (checkbox) checkbox.checked = true;
+  }
+
   filterDocs();
 
   /* ---- Réinitialisation des filtres ---- */
